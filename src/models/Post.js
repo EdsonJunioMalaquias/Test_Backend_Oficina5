@@ -1,10 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Address extends Model {
+class Post extends Model {
     static init(sequelize) {
         super.init({
             title: DataTypes.STRING,
-            boody: DataTypes.STRING,
+            body: DataTypes.STRING,
         }, {
             sequelize
         })
@@ -13,4 +13,4 @@ class Address extends Model {
         this.belongsTo(models.Users, { foreignKey: 'userId', as: 'user'});
     }
 }
-module.exports = Address;
+module.exports = Post;

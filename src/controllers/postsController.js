@@ -1,10 +1,10 @@
-const Post = require('../models/Posts');
+const Post = require('../models/Post');
 
 module.exports = {
     async createPost(req, res) {
         try {
-            const { } = req.body;
-            const post = await Post.create({});
+            const { title, body, userId } = req.body;
+            const post = await Post.create({ title, body, userId });
             return res.status(201).json(post);
         } catch (err) {
             return res.status(500).json("Unable to register Post. This err is :" + err.message);
@@ -14,7 +14,7 @@ module.exports = {
         try {
 
             const posts = await Post.findAll();
-            
+
             return res.status(200).json(posts);
 
         } catch (err) {
@@ -28,7 +28,7 @@ module.exports = {
             const post = await Post.findOne({ _id });
 
             if (!post) {
-                return res.status(200).json({ message: 'Post not Found!' });
+                return res.status(404).json({ message: 'Post not Found!' });
             }
 
             return res.status(200).json(post);
@@ -37,12 +37,5 @@ module.exports = {
             return res.status(500).json("Unable to find Post. This err is :" + err.message);
         }
     },
-    async DeletePost(req, res) {
-        try {
-            return res.status(200).json("Methd not implemented");
-        } catch (err) {
-            return res.status(500).json("Unable to delete Post. This err is :" + err.message);
-        }
-    }
 }
 

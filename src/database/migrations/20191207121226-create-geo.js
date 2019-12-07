@@ -20,7 +20,7 @@ module.exports = {
       address_id:{
         allowNull: false,
         type: Sequelize.INTEGER,
-        references : { model: 'address', key: 'id' },
+        references : { model: 'addresses', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
