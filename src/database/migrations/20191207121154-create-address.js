@@ -31,7 +31,15 @@ module.exports = {
         references : { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-      }
+      },
+      createdAt :{
+        type: Sequelize.DATE,
+        allowNull :false,
+      },
+      updatedAt:{
+        type:Sequelize.DATE,
+        allowNull:false,
+      },
 
     });
   },
