@@ -25,8 +25,8 @@ module.exports = {
         try {
 
             const { _id } = req.params;
-            const post = await Post.findOne({ _id });
-
+            const post = await Post.findByPk(_id);
+            console.log(_id);
             if (!post) {
                 return res.status(404).json({ message: 'Post not Found!' });
             }
