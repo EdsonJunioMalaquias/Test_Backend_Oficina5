@@ -6,6 +6,8 @@ const usersRouter = require('./routes/users');
 const app = express();
 const port = '3000';
 
+require('./database');
+
 app.listen(port);
 
 app.use(logger('dev'));
