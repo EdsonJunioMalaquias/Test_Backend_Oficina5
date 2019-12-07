@@ -10,4 +10,6 @@ Users.init(connection);
 Posts.init(connection);
 Address.init(connection);
 
+Posts.associate(connection.models);
+Address.associate(connection.models);
 module.exports =connection;

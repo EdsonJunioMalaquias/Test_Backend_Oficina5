@@ -1,7 +1,7 @@
 # Test_Backend_Oficina5
 
-
-
+### dependences required 
+node
 
 ## commands to use project 
 
