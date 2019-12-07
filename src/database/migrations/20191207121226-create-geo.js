@@ -2,39 +2,32 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('users', {
+    return queryInterface.createTable('geo', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      lat: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      username: {
+      lng: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      email: {
+      address_id:{
         allowNull: false,
-        type: Sequelize.STRING,
-        isEmail: true,
-      },
-      phone: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      website: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        isUrl: true,
+        type: Sequelize.INTEGER,
+        references : { model: 'address', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       }
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('users');
+    return queryInterface.dropTable('geo');
   }
 };
