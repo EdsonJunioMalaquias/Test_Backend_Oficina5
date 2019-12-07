@@ -26,7 +26,6 @@ module.exports = {
 
             const { _id } = req.params;
             const post = await Post.findByPk(_id);
-            console.log(_id);
             if (!post) {
                 return res.status(404).json({ message: 'Post not Found!' });
             }
@@ -37,5 +36,21 @@ module.exports = {
             return res.status(500).json("Unable to find Post. This err is :" + err.message);
         }
     },
+    async DeletePost(req, res) {
+        try {
+
+            const { _id } = req.params;
+            const post = await Post.findByPk(_id);
+            if (!post) {
+                return res.status(404).json({ message: 'Post not Found!' });
+            }
+            await post.destroy({ where: { id: _id } })
+            return res.status(204).json("Post Removido com sucesso");
+
+        } catch (err) {
+            return res.status(500).json("Unable to find Post. This err is :" + err.message);
+        }
+    },
+    
 }
 
