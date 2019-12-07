@@ -45,29 +45,47 @@ module.exports = {
                 return res.status(404).json({ message: 'Post not Found!' });
             }
             await post.destroy({ where: { id: _id } })
-            return res.status(204).json({message: "Post Removido com sucesso"});
+            return res.status(204).json({ message: "Post Removido com sucesso" });
 
         } catch (err) {
             return res.status(500).json("Unable to find Post. This err is :" + err.message);
         }
     },
-    async updateOne (req, res) {
+    async updateOne(req, res) {
         try {
-          const { _id } = req.params
-    
-          const postUpdate = await Post.findByPk(_id);
-    
-          if (!postUpdate) {
-            return res.status(404).json({ message: 'Post not Found!' });
-          }
-    
-          await Post.update(req.body, { where: { id: _id } })
-    
-          return res.status(204).json({message: "Post atualizado com sucesso"});
+            const { _id } = req.params
+
+            const postUpdate = await Post.findByPk(_id);
+
+            if (!postUpdate) {
+                return res.status(404).json({ message: 'Post not Found!' });
+            }
+
+            await Post.update(req.body, { where: { id: _id } })
+
+            return res.status(204).json({ message: "Post atualizado com sucesso" });
         } catch (err) {
             return res.status(500).json("Unable to update Post. This err is :" + err.message);
         }
-      }
-    
+    },
+    async UpdateOneField(req, res) {
+        try {
+
+            const { _id } = req.params
+
+            const postUpdate = await Post.findByPk(_id);
+            if (!postUpdate) {
+                return res.status(404).json({ message: 'Post not Found!' });
+            }
+
+            await Post.update(postUpdate, { where: { id: _id } })
+
+            return res.status(204).json({ message: "Post atualizado com sucesso" });
+
+        } catch (err) {
+            return res.status(500).json("Unable to find Post. This err is :" + err.message);
+        }
+    },
+
 }
 
